@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Ionic CRUD</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+ 
+  <form #f="ngForm" (ngSubmit)="onSave(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Name</ion-label>
+        <ion-input type="text" name="name" placeholder="Name" ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Description</ion-label>
+        <ion-input type="text" name="description" placeholder="Description" ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Quantity</ion-label>
+        <ion-input type="number" name="quantity" placeholder="Quantity" ngModel required></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button type="submit" block [disabled]="!f.valid">Save</button>
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let product of products" padding>
+      <button ion-button  (click)="onUpdateProduct(product)" color="secondary">Update</button>
+      <button ion-button (click)="onDeleteProduct(product._id)" color="danger">Delete</button>
+      
+      <h2>Name: {{ product.name }}</h2>
+      <h3>Description: {{ product.description }}</h3>
+      <p>Quantity: {{ product.quantity }}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
